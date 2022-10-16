@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { useEffect } from "react";
+import PokeScreen from "./components/PokeScreen";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const[pokeno,setPokeno]=useState(0)
+  const[pokeName,setpokeName]=useState("bulbasaur")
+  useEffect(() => {
+    async function getArray() {
+      const resp = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
+      );
+      const respData = resp.json();
+      Promise.resolve(respData).then((data) => {
+        const arr = data.results[pokeno].name;
+        setpokeName(arr)
+        console.log(arr,pokeno);
+      });
+    }
+    getArray();
+  });
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App mx-auto ">
+      <div className="mx-auto mt-16 relative   bg-red-600 w-[750px] h-[600px] ">
+        <br />
+        <PokeScreen pokename={pokeName}/>
+        <button onClick={()=>{pokeno>=1?setPokeno(pokeno-1):setPokeno(646)}}>Previous</button>
+        <button onClick={()=>{pokeno<647?setPokeno(pokeno+1):setPokeno(0)}}>Next</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
