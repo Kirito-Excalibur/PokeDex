@@ -8,8 +8,9 @@ import Moves from "./components/Moves";
 function App() {
   const [pokeno, setPokeno] = useState(0);
   const [pokeName, setpokeName] = useState("bulbasaur");
-  const [desc, setDesc] = useState("");
-  const[move, setMove]= useState([])
+ 
+  
+
   useEffect(() => {
     async function getArray() {
       const resp = await fetch(
@@ -23,27 +24,11 @@ function App() {
       });
     }
 
-    async function getDesc() {
-      const resp = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokeno + 1}`
-      );
-      const respData = resp.json();
-      Promise.resolve(respData).then((data) => {
-        const arr = data;
- 
-        setDesc(arr.flavor_text_entries[1].flavor_text);
-      });
-    }
+   
 
-    async function getMoves(){
-      const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
-      const respData= await resp.json()
-      setMove(respData.moves)
-    }
-getMoves()
-    getDesc();
+  
     getArray();
-  });
+  },[pokeno]);
 
   return (
     <div className="App ">
@@ -59,10 +44,10 @@ getMoves()
 
         <div className="p-4 mt-4 flex gap-4 ">
           <PokeScreen pokename={pokeName} />
-          <PokeDesc desc={desc} />
+          <PokeDesc pokeno={pokeno} />
         </div>
 
-       <Moves arr={move.slice(0,4)}/>
+       <Moves pokeName={pokeName}/>
       </div>
 
       <button
