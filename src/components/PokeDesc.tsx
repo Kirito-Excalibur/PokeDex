@@ -11,11 +11,10 @@ function PokeDesc({ pokename }) {
       const respData = resp.json();
       Promise.resolve(respData).then((data) => {
         const arr = data;
-
         setDesc(arr.flavor_text_entries[1].flavor_text);
       });
     }
-    getDesc()
+    getDesc();
   });
 
   return (

@@ -8,27 +8,21 @@ import Moves from "./components/Moves";
 function App() {
   const [pokeno, setPokeno] = useState(0);
   const [pokeName, setpokeName] = useState("bulbasaur");
- 
-  
 
   useEffect(() => {
     async function getArray() {
       const resp = await fetch(
         "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
       );
-      const respData =await resp.json();
-    
-        const arr = respData.results[pokeno].name;
-        setpokeName(arr);
-        console.log(arr)
-    
+      const respData = await resp.json();
+
+      const arr = respData.results[pokeno].name;
+      setpokeName(arr);
+      console.log(arr);
     }
 
-   
-
-  
     getArray();
-  },[pokeno]);
+  }, [pokeno]);
 
   return (
     <div className="App ">
@@ -47,7 +41,7 @@ function App() {
           <PokeDesc pokename={pokeName} />
         </div>
 
-       <Moves pokeName={pokeName}/>
+        <Moves pokeName={pokeName} />
       </div>
 
       <button
