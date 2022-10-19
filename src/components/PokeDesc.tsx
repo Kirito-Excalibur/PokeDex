@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-function PokeDesc({ pokeno }) {
+function PokeDesc({ pokename }) {
   const [desc, setDesc] = useState("");
 
   useEffect(() => {
     async function getDesc() {
       const resp = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokeno + 1}`
+        `https://pokeapi.co/api/v2/pokemon-species/${pokename}`
       );
       const respData = resp.json();
       Promise.resolve(respData).then((data) => {

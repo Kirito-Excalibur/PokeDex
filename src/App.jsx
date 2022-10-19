@@ -16,12 +16,12 @@ function App() {
       const resp = await fetch(
         "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
       );
-      const respData = resp.json();
-      Promise.resolve(respData).then((data) => {
-        const arr = data.results[pokeno].name;
+      const respData =await resp.json();
+    
+        const arr = respData.results[pokeno].name;
         setpokeName(arr);
         console.log(arr)
-      });
+    
     }
 
    
@@ -44,7 +44,7 @@ function App() {
 
         <div className="p-4 mt-4 flex gap-4 ">
           <PokeScreen pokename={pokeName} />
-          <PokeDesc pokeno={pokeno} />
+          <PokeDesc pokename={pokeName} />
         </div>
 
        <Moves pokeName={pokeName}/>
