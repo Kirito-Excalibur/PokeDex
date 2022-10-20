@@ -7,7 +7,7 @@ import Moves from "./components/Moves";
 
 function App() {
   const [pokeno, setPokeno] = useState(0);
-  const [pokeName, setpokeName] = useState("bulbasaur");
+
 
   useEffect(() => {
     async function getArray() {
@@ -17,7 +17,7 @@ function App() {
       const respData = await resp.json();
 
       const arr = respData.results[pokeno].name;
-      setpokeName(arr);
+      
       console.log(arr);
     }
 
@@ -37,11 +37,11 @@ function App() {
         </div>
 
         <div className="p-4 mt-4 flex gap-4 ">
-          <PokeScreen pokename={pokeName} />
-          <PokeDesc pokename={pokeName} />
+          <PokeScreen pokename={pokeno+1} />
+          <PokeDesc pokename={pokeno+1} />
         </div>
 
-        <Moves pokeName={pokeName} />
+        <Moves pokeName={pokeno+1} />
       </div>
 
       <button

@@ -15,7 +15,7 @@ function PokeDesc({ pokename }) {
       });
     }
     getDesc();
-  });
+  },[pokename]);
 
   return (
     <div className="flex  justify-center items-center w-[900px]">

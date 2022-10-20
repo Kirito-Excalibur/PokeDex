@@ -14,7 +14,7 @@ function Moves({ pokeName }) {
 
     getMoves();
   }, [pokeName]);
-
+ 
   return (
     <div className="bg-red-700 m-4 rounded-2xl pb-4">
       <h1 className="text-center text-4xl">Moves</h1>
