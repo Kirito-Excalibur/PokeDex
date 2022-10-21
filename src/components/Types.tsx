@@ -27,7 +27,7 @@ function Types({ final }) {
             <li key={key} className="w-[100px]">
               <img
                 className="w-[100px]"
-                src={`src/assets/${type}.svg`}
+                src={`assets/${type}.svg`}
                 alt=""
               />
             </li>
