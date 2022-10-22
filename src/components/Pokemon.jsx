@@ -1,0 +1,67 @@
+import { useState } from "react";
+import "../App.css";
+import { useEffect } from "react";
+import PokeScreen from "./PokeScreen";
+import PokeDesc from "./PokeDesc";
+import Moves from "./Moves";
+
+function Pokemon() {
+  const [pokeno, setPokeno] = useState(0);
+
+  useEffect(() => {
+    async function getArray() {
+      const resp = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
+      );
+      const respData = await resp.json();
+
+      const arr = respData.results[pokeno].name;
+
+      console.log(arr);
+    }
+
+    getArray();
+  }, [pokeno]);
+
+  return (
+    <div className="App ">
+      <div className="mx-auto   pb-5  bg-red-600 w-[420px] ">
+        <div className="flex pt-4 justify-center">
+          <form action="">
+            <input type="text" />
+            <button type="sumbit" className="ml-5">
+              Search
+            </button>
+          </form>
+        </div>
+
+        <div className="p-4 mt-4 flex gap-4 ">
+          <PokeScreen pokename={pokeno + 1} />
+          <PokeDesc pokename={pokeno + 1} />
+        </div>
+<br />
+        <Moves pokeName={pokeno + 1} />
+
+        <button
+        onClick={() => {
+          pokeno >= 1 ? setPokeno(pokeno - 1) : setPokeno(646);
+        }}
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => {
+          pokeno < 647 ? setPokeno(pokeno + 1) : setPokeno(0);
+        }}
+      >
+        Next
+      </button>
+
+      </div>
+
+    
+    </div>
+  );
+}
+
+export default Pokemon;

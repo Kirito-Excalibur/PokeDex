@@ -18,27 +18,29 @@ function PokeDesc({ pokename }) {
       );
       const respData2 = await resp1.json();
       setPokeType(respData2.types[0].type.name);
-    
+
       try {
         setPokeType2(respData2.types[1].type.name);
         setPresent(true);
       } catch (error) {
-        setPresent(false)
+        setPresent(false);
       }
-        
-      
-    
     }
 
     getDesc();
   }, [pokename]);
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center w-[900px]">
-      <p className="bg-white rounded-xl p-4 text-3xl inline-block">{desc}</p>
-      <div className="flex gap-[120px]">
-        <img className="w-[100px]" src={`/assets/${pokeType}.svg`} alt="" />
-        {present && (<img className="w-[100px]" src={`/assets/${pokeType2}.svg`} alt="" />)}
+    <div className="flex flex-col justify-center gap-4 items-center w-[800px]">
+      <p className="bg-white rounded-xl p-4 text-xl inline-block">{desc}</p>
+      <div className="absolute">
+        <div className="flex mt-[260px]">
+        <img className="w-[80px]" src={`/assets/${pokeType}.svg`} alt="" />
+        {present && (
+          <img className="w-[80px]" src={`/assets/${pokeType2}.svg`} alt="" />
+        )}
+        </div>
+    
       </div>
     </div>
   );
