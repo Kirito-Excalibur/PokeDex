@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Types({ final }) {
   const [types, setTypes] = useState([]);
-
+  const[cond,setCond]=useState(false)
   useEffect(() => {
     async function getTypes() {
       const newArr = [];
@@ -21,15 +21,12 @@ function Types({ final }) {
 
   return (
     <div>
-      <ul className="text-3xl flex gap-6 flex-col items-center">
+      <button className="absolute" onClick={()=>setCond(!cond)} >Show him boss</button>
+      <ul className="text-3xl flex gap-3 flex-col items-center">
         {types.map((type, key) => {
           return (
             <li key={key} className="w-[100px]">
-              <img
-                className="w-[100px]"
-                src={`/assets/${type}.svg`}
-                alt=""
-              />
+              <img className="w-[100px]" src={`/assets/${type}.svg`} alt="" />
             </li>
           );
         })}
