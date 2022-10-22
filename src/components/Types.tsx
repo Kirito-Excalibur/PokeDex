@@ -5,16 +5,12 @@ function Types({ final }) {
   const[cond,setCond]=useState(false)
   useEffect(() => {
     async function getTypes() {
-      const newArr = [];
-      final.map(async (item) => {
+      const types = final.map(async (item) => {
         const respType = await fetch(item.move.url);
         const respTypeData = await respType.json();
-        const final2 = respTypeData.type.name;
-        console.log(final2);
-        newArr.push(final2);
-        setTypes(newArr);
+        return respTypeData.type.name;
       });
-      console.log(types);
+      setTypes(await Promise.all(types))
     }
     getTypes();
   }, [final]);
