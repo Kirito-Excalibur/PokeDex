@@ -8,15 +8,6 @@ import './index.css'
 const router=createBrowserRouter([
     {
         path: "/",
-        element:(
-            <div>
-             <h1>Life is wierd</h1>   
-             <Link to="poke">About Us</Link>
-            </div>
-        ),
-    },
-    {
-        path: "/poke",
         element:<App/>,
     }
 ])
