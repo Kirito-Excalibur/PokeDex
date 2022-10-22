@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { PropagateLoader } from "react-spinners";
 function Types({ final }) {
   const [types, setTypes] = useState([]);
   const[cond,setCond]=useState(false)
+const[loading,setLoading]=useState(false)
+
+
   useEffect(() => {
+
+    setLoading(true)
+
     async function getTypes() {
       const newArr = [];
       final.map(async (item) => {
@@ -12,17 +18,21 @@ function Types({ final }) {
         const final2 = respTypeData.type.name;
         console.log(final2);
         newArr.push(final2);
-        setTypes(newArr);
+       
       });
+      setTypes(newArr);
       console.log(types);
+      setLoading(false)
     }
     getTypes();
   }, [final]);
-
+setInterval(()=>setCond(!cond),100)
   return (
     <div>
-      <button className="absolute" onClick={()=>setCond(!cond)} >Show him boss</button>
-      <ul className="text-3xl flex gap-3 flex-col items-center">
+ 
+    {loading ?( <PropagateLoader size={30} color="black" loading={loading}/>)
+  :
+  <ul className="text-3xl flex gap-3 flex-col items-center">
         {types.map((type, key) => {
           return (
             <li key={key} className="w-[100px]">
@@ -31,6 +41,8 @@ function Types({ final }) {
           );
         })}
       </ul>
+  }
+    
     </div>
   );
 }
