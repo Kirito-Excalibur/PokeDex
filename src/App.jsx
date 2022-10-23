@@ -8,7 +8,6 @@ function App() {
   const [imgdata, setImgdata] = useState([]);
   useEffect(() => {
     async function getArray() {
-      const newArr=[]
       const resp = await fetch(
         "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
       );
@@ -17,31 +16,38 @@ function App() {
       const arr = respData.results;
 
       setPokemons(arr);
-    
-      arr.slice(0,4).map(async (imgd) => {
+
+      const newArr = [];
+      arr.map(async (imgd) => {
         const resp1 = await fetch(imgd.url);
         const resp1Data = await resp1.json();
+        const final = resp1Data.sprites.other.home.front_default;
 
-        newArr.push(resp1Data);
+        newArr.push(final);
       });
-      setImgdata(newArr)
+      setImgdata(newArr);
+   console.log(Pokemons[12])
     }
- 
+
     getArray();
-  },[keyval] );
-
+  }, []);
+  setInterval(() => setKey(!keyval), 100);
   return (
-    <div className="mx-auto items-center justify-center flex flex-wrap gap-5 pb-5 bg-red-600 w-[420px] ">
-      <button onClick={()=>setKey(!keyval)}>CLICK ME FOR PIC</button>
-      <div>
-      {imgdata.map((imgi,key)=>{
-
-         
-          return <img className="w-[100px]" src={imgi.sprites.other.home.front_default} />;
-        })
-      }
+    <div className="mx-auto justify-center   flex flex-col flex-wrap pb-5 bg-red-600 w-[420px] ">
+      <h1 className="text-center">POKEDEX</h1>
+      <div className="flex flex-wrap  gap-4  justify-center items-center">
+        {imgdata.map((imgi, key) => {
+          return (
+            <div className="flex flex-col justify-center items-center">
+            <img
+              className="w-[150px] rounded-xl bg-white border border-green-500"
+              src={imgi}
+            />
+        <Link to={`pokemon/${key+1}`}>  <h1>{Pokemons[key].name}</h1></Link>  
+            </div>
+          );
+        })}
      
-      <Link to={`pokemon/`}>Here</Link>
       </div>
     </div>
   );
