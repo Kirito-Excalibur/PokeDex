@@ -34,6 +34,7 @@ setInterval(()=>setCond(!cond),100)
   :
   <ul className="text-3xl flex gap-3 flex-col items-center">
         {types.map((type, key) => {
+     
           return (
             <li key={key} className="w-[100px]">
               <img className="w-[100px]" src={`/assets/${type}.svg`} alt="" />
