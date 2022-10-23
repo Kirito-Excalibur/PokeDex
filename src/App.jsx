@@ -40,6 +40,7 @@ function App() {
           return (
             <div className="flex flex-col justify-center items-center">
             <img
+            loading="lazy"
               className="w-[150px] rounded-xl bg-white border border-green-500"
               src={imgi}
             />
