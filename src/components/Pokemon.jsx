@@ -4,10 +4,14 @@ import { useEffect } from "react";
 import PokeScreen from "./PokeScreen";
 import PokeDesc from "./PokeDesc";
 import Moves from "./Moves";
+import { useParams } from "react-router-dom";
 
-function Pokemon() {
-  const [pokeno, setPokeno] = useState(0);
+function Pokemon({match}) {
 
+ let {value}=useParams(match)
+
+  const [pokeno, setPokeno] = useState(value);
+console.log(pokeno)
   useEffect(() => {
     async function getArray() {
       const resp = await fetch(
@@ -24,6 +28,7 @@ function Pokemon() {
   }, [pokeno]);
 
   return (
+
     <div className="App ">
       <div className="mx-auto   pb-5  bg-red-600 w-[420px] ">
         <div className="flex pt-4 justify-center">
@@ -36,11 +41,11 @@ function Pokemon() {
         </div>
 
         <div className="p-4 mt-4 flex gap-4 ">
-          <PokeScreen pokename={pokeno + 1} />
-          <PokeDesc pokename={pokeno + 1} />
+          <PokeScreen pokename={pokeno } />
+          <PokeDesc pokename={pokeno } />
         </div>
 <br />
-        <Moves pokeName={pokeno + 1} />
+        <Moves pokeName={pokeno } />
 
         <button
         onClick={() => {

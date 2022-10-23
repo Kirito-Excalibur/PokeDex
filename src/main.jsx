@@ -1,26 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { Routes,Route,Router, BrowserRouter} from "react-router-dom";
 
 import App from "./App";
 import Pokemon from "./components/Pokemon";
 import "./index.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
- 
-  },
-  {
-    path: "pokemon",
-    element: <Pokemon />,
-  }
-]);
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+ 
+  <BrowserRouter>
+  
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/pokemon/:value" element={<Pokemon />} />
+</Routes>
+  </BrowserRouter>
+
 );
