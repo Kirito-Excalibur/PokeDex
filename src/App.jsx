@@ -6,8 +6,8 @@ function App() {
   const [Pokemons, setPokemons] = useState([]);
   const [keyval, setKey] = useState(true);
   const [imgdata, setImgdata] = useState([]);
-  const[maxVal,setmaxVal]=useState(40)
-  console.log(maxVal)
+  const [maxVal, setmaxVal] = useState(40);
+ 
   useEffect(() => {
     async function getArray() {
       const resp = await fetch(
@@ -28,7 +28,6 @@ function App() {
         newArr.push(final);
       });
       setImgdata(newArr);
-   
     }
 
     getArray();
@@ -40,19 +39,24 @@ function App() {
       <div className="flex flex-wrap  gap-4  justify-center items-center">
         {imgdata.map((imgi, key) => {
           return (
-            <Link to={`pokemon/${key+1}`}>       <div className="flex flex-col justify-center items-center">
-            <img
-            loading="eager"
-              className="w-[150px] h-[150px] rounded-xl bg-white border border-green-500"
-              src={imgi}
-            />
-   <h1>{Pokemons[key].name}</h1> 
-            </div></Link> 
+            <Link key={key} to={`pokemon/${key + 1}`}>
+          
+              <div  className="flex flex-col justify-center items-center">
+                <img
+           
+                  loading="eager"
+                  className="w-[150px] h-[150px] rounded-xl bg-white border border-green-500"
+                  src={imgi}
+                />
+                <h1>{Pokemons[key].name}</h1>
+              </div>
+            </Link>
           );
         })}
       </div>
 
-      <button onClick={()=>setmaxVal(maxVal+20)}>Show More</button>
+      <button onClick={() => setmaxVal(maxVal + 20)}>Show More +20</button>
+      <button onClick={() => setmaxVal(647)}>Show All</button>
     </div>
   );
 }
