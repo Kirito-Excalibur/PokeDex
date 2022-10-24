@@ -7,27 +7,25 @@ function App() {
   const [keyval, setKey] = useState(true);
   const [imgdata, setImgdata] = useState([]);
   const [maxVal, setmaxVal] = useState(40);
- 
+
   useEffect(() => {
     async function getArray() {
       const resp = await fetch(
         `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${maxVal}`
       );
       const respData = await resp.json();
-
       const arr = respData.results;
-
       setPokemons(arr);
 
-      const newArr = [];
-      arr.map(async (imgd) => {
+     
+     const imges= arr.map(async (imgd) => {
         const resp1 = await fetch(imgd.url);
         const resp1Data = await resp1.json();
-        const final = resp1Data.sprites.front_default;
+        return resp1Data.sprites.front_default;
 
-        newArr.push(final);
+       
       });
-      setImgdata(newArr);
+      setImgdata(await Promise.all(imges));
     }
 
     getArray();
@@ -40,10 +38,8 @@ function App() {
         {imgdata.map((imgi, key) => {
           return (
             <Link key={key} to={`pokemon/${key + 1}`}>
-          
-              <div  className="flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center">
                 <img
-           
                   loading="eager"
                   className="w-[150px] h-[150px] rounded-xl bg-white border border-green-500"
                   src={imgi}
