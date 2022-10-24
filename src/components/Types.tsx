@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 function Types({ final }) {
   const [types, setTypes] = useState([]);
-  const [cond, setCond] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
