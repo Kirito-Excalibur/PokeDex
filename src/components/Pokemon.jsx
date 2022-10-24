@@ -48,7 +48,8 @@ console.log(pokeno)
 <br />
         <Moves pokeName={pokeno } />
 
-        <button
+<div className="flex justify-between mx-3">
+<button
         onClick={() => {
           pokeno >= 1 ? setPokeno(pokeno - 1) : setPokeno(646);
         }}
@@ -63,6 +64,10 @@ console.log(pokeno)
         Next
       </button>
 
+
+</div>
+
+   
       </div>
 
     
