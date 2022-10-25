@@ -8,24 +8,23 @@ import { useParams, Link } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 
 function Pokemon({ match }) {
-
   let { value } = useParams(parseInt(match));
 
   const [pokeno, setPokeno] = useState(parseInt(value));
+  const [pokename, setPokename] = useState();
   console.log(pokeno);
 
   useEffect(() => {
-    
     async function getArray() {
       const resp = await fetch(
         "https://pokeapi.co/api/v2/pokemon?offset=0&limit=647"
       );
       const respData = await resp.json();
 
-      const arr = respData.results[pokeno].name;
+      const arr = respData.results[pokeno - 1].name;
 
       console.log(arr);
-  
+      setPokename(respData.results[pokeno - 1].name);
     }
 
     getArray();
@@ -45,6 +44,8 @@ function Pokemon({ match }) {
         </form>
       </div>
 
+      <h1 className="text-2xl pl-5 ">{pokename}</h1>
+
       <div className="p-4 mt-4 flex gap-4 ">
         <PokeScreen pokename={pokeno} />
         <PokeDesc pokename={pokeno} />
@@ -55,14 +56,14 @@ function Pokemon({ match }) {
       <div className="flex justify-between mx-3">
         <button
           onClick={() => {
-            pokeno >= 1 ? setPokeno(pokeno - 1) : setPokeno(646);
+            pokeno > 1 ? setPokeno(pokeno - 1) : setPokeno(647);
           }}
         >
           Previous
         </button>
         <button
           onClick={() => {
-            pokeno < 647 ? setPokeno(pokeno + 1) : setPokeno(0);
+            pokeno < 647 ? setPokeno(pokeno + 1) : setPokeno(1);
           }}
         >
           Next
