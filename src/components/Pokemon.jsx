@@ -32,7 +32,7 @@ function Pokemon({ match }) {
   }, [pokeno]);
 
   return (
-    <div className="mx-auto  pb-5 rounded-lg  bg-red-600 w-[420px] ">
+    <div className="mx-auto  pb-5 rounded-lg relative bg-red-600 w-[420px]  ">
       <Link to="/">
         <h1 className="text-center text-3xl">Pokedex</h1>
       </Link>

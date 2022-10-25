@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 *{
-    font-family: 'Itim', cursive;
+    font-family: 'Fira Sans', sans-serif;
     margin: none;
 
 }

@@ -6,12 +6,11 @@ function App() {
   const [Pokemons, setPokemons] = useState([]);
   const [keyval, setKey] = useState(true);
   const [imgdata, setImgdata] = useState([]);
-  const [maxVal, setmaxVal] = useState(20);
+  const [maxVal, setmaxVal] = useState(40);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     async function getArray() {
-      
       const resp = await fetch(
         `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${maxVal}`
       );
@@ -25,24 +24,18 @@ function App() {
         return resp1Data.sprites.front_default;
       });
       setImgdata(await Promise.all(imges));
-      setLoading(false)
+      setLoading(false);
     }
 
     getArray();
   }, [maxVal]);
   setInterval(() => setKey(!keyval), 100);
 
-
-
-
-  
   return (
-    <div className="mx-auto flex flex-col  justify-center pb-5 bg-red-600 max-w-[420px] ">
-      <h1 className="text-center pb-4">POKEDEX</h1>
+    <div className="mx-auto flex flex-col items-center relative z-10 justify-center p-5 bg-red-600 w-[420px] sm:w-[1810px]  ">
+      <h1 className="text-center text-3xl pb-4">PokéDex</h1>
 
-{loading ? (
-        <PropagateLoader size={30} color="black" loading={loading} />
-      ):(
+   
         <div className="flex flex-wrap   gap-4  justify-center items-center">
           {imgdata.map((imgi, key) => {
             return (
@@ -53,15 +46,15 @@ function App() {
                     className="w-[150px] h-[150px] rounded-xl bg-white border border-green-500"
                     src={imgi}
                   />
-                  <h1>{Pokemons[key].name}</h1>
+                  <h1 className="text-2xl">{Pokemons[key].name}</h1>
                 </div>
               </Link>
             );
           })}
-        </div>) }
+        </div>
+   
 
-
-      <button onClick={() => setmaxVal(maxVal + 20)}>Show More +20</button>
+      <button className="mt-5" onClick={() => setmaxVal(maxVal + 20)}>Show More +20</button>
       <button onClick={() => setmaxVal(647)}>Show All</button>
     </div>
   );

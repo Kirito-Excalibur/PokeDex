@@ -15,7 +15,7 @@ function PokeScreen({ pokename }) {
 
   return (
     <div className=" bg-white flex h-[200px] rounded-xl justify-center items-center border border-black  ">
-      <img src={image} className="   " alt="" />
+      <img src={image} className="   " alt={pokename} />
     </div>
   );
 }
