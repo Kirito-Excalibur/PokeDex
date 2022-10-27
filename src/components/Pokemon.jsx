@@ -49,7 +49,7 @@ function Pokemon({ match }) {
         </form>
       </div>
 
-      <h1 className="text-2xl pl-5 mt-10 ">{capitalizeFirstLetter(pokename)}</h1>
+      <h1 className="text-2xl pl-5 mt-2 ">{capitalizeFirstLetter(pokename)}</h1>
 
       <div className="p-4 mt-4 flex gap-4 ">
         <PokeScreen pokename={pokeno} />
