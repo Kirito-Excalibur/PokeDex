@@ -11,7 +11,7 @@ function Pokemon({ match }) {
   let { value } = useParams(parseInt(match));
 
   const [pokeno, setPokeno] = useState(parseInt(value));
-  const [pokename, setPokename] = useState();
+  const [pokename, setPokename] = useState("");
   console.log(pokeno);
 
   useEffect(() => {
@@ -30,6 +30,11 @@ function Pokemon({ match }) {
     getArray();
   }, [pokeno]);
 
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="mx-auto  pb-5 rounded-lg relative bg-red-600 w-[420px]  ">
       <Link to="/">
@@ -44,7 +49,7 @@ function Pokemon({ match }) {
         </form>
       </div>
 
-      <h1 className="text-2xl pl-5 ">{pokename}</h1>
+      <h1 className="text-2xl pl-5 mt-10 ">{capitalizeFirstLetter(pokename)}</h1>
 
       <div className="p-4 mt-4 flex gap-4 ">
         <PokeScreen pokename={pokeno} />

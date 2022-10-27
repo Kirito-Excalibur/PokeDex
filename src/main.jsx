@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <div>
-        <div className="hidden sm:block  opacity-80   w-full h-full bg-[length:200px] bg-[url('assets/pokeball.svg')] fixed z-0"></div>
+        <div className="hidden sm:block  opacity-80   w-full h-full bg-[length:200px] bg-[url('/assets/pokeball.svg')] fixed z-0"></div>
         <Outlet />
       </div>
     ),
