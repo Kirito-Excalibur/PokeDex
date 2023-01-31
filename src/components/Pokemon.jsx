@@ -30,13 +30,12 @@ function Pokemon({ match }) {
     getArray();
   }, [pokeno]);
 
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
-    <div className="mx-auto  pb-5 rounded-lg relative bg-red-600 w-[420px]  ">
+    <div className="mx-auto p-3 rounded-lg relative bg-red-600 w-[420px]  ">
       <Link to="/">
         <h1 className="text-center text-3xl">Pokedex</h1>
       </Link>
@@ -49,9 +48,11 @@ function Pokemon({ match }) {
         </form>
       </div>
 
-      <h1 className="text-2xl pl-5 mt-2 ">{capitalizeFirstLetter(pokename)}</h1>
+      <h1 className="text-2xl mt-4 pl-[50px] ">
+        {capitalizeFirstLetter(pokename)}
+      </h1>
 
-      <div className="p-4 mt-4 flex gap-4 ">
+      <div className="px-4  flex gap-4 ">
         <PokeScreen pokename={pokeno} />
         <PokeDesc pokename={pokeno} />
       </div>

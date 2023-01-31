@@ -33,14 +33,12 @@ function PokeDesc({ pokename }) {
   return (
     <div className="flex flex-col justify-center gap-4 items-center w-[800px]">
       <p className="bg-white rounded-xl p-4 text-xl inline-block">{desc}</p>
-      <div className="absolute">
-        <div className="flex mt-[260px]">
+
+      <div className="flex">
         <img className="w-[80px]" src={`/assets/${pokeType}.svg`} alt="" />
         {present && (
           <img className="w-[80px]" src={`/assets/${pokeType2}.svg`} alt="" />
         )}
-        </div>
-    
       </div>
     </div>
   );
