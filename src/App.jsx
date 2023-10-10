@@ -62,7 +62,7 @@ function App() {
             return (
               <div className="flex flex-col justify-center items-center">
                 <Link key={key} to={`pokemon/${name.id}`}>
-                  <h1>{name.id}</h1>
+                  <h1>{name.id + 1}</h1>
 
                   <img
                     loading="eager"
